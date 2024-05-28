@@ -1,4 +1,4 @@
-FROM node:20.13.1
+FROM node:20.13.1-bullseye-slim
 
 WORKDIR /usr/src
 
@@ -6,7 +6,9 @@ WORKDIR /usr/src
 # dependencies (better layer caching)
 COPY package*.json ./
 
-RUN npm ci 
+RUN --mount=type=cache,target=/usr/src/.npm \
+  npm set cache /usr/src/.npm && \
+  npm ci 
 
 USER node
 
