@@ -1,6 +1,9 @@
 
 build:
-	docker build -t node-minichat .
+	docker-compose build
 
-run: build
-	docker run -d -p 3000:3000 node-minichat	
+up:
+	docker-compose up -d node-minichat	
+
+down:
+	docker-compose down	

@@ -1,0 +1,25 @@
+services:
+
+  node-minichat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://chat:abc123@db:5432/postgres
+
+    volumes:
+      - ./src/client:/src/client
+      - ./src/server:/src/server
+    ports:
+      - "3000:3000"
+
+
+  db:
+    image: postgres:16.3
+    environment:
+      - POSTGRES_USER=chat
+      - POSTGRES_PASSWORD=abc123
+    ports:
+      - "5432:5432"
