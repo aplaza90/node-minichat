@@ -15,4 +15,4 @@ COPY --chown=node:node ./src/ .
 EXPOSE 3000
 
 
-CMD [ "node", "server/index.js" ]
+CMD [ "node", "server/server-with-postgres.js" ]
